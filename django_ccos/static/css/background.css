@@ -1,0 +1,10 @@
+.background-image {
+    background-image: url("../images/background/background.jpg");
+    background-size: cover; /* 可以根据需要调整背景图片的大小 */
+    background-position: center center; /* 可以根据需要调整背景图片的位置 */
+}
+
+.my-white-background-container {
+    background-color: white;
+    /* 其他样式属性 */
+}

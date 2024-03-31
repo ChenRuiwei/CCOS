@@ -1,0 +1,62 @@
+{% extends 'business/base.html' %}
+{% load static %}
+
+{% block title %}
+    Dish change
+{% endblock %}
+
+{% block content %}
+    <div class="container d-flex align-items-center justify-content-center my-white-background-container col-md-6">
+        {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <form action="" method="post" id="dish_form" class="container">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_dish_name" class="required">菜品名：</label>
+                        <input type="text" name="dish_name" placeholder="name" class="form-control"
+                               maxlength="50" required
+                               id="id_dish_name">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_price" class="required">价格：</label>
+                        <input type="number" name="price" placeholder="13" step="0.5" required id="id_price"
+                               class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="id_description">菜品描述：</label>
+                        <input type="text" name="description" placeholder="description"
+                               class="form-control" maxlength="100" id="id_description">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="id_photo_url">图片链接地址：</label>
+                        <input type="text" name="photo_url" placeholder="photo_url" class="form-control"
+                               maxlength="1000" id="id_photo_url">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <button type="submit" name="save" class="btn btn-primary">保存</button>
+                    <a class="btn btn-primary" href="/business/{{ business_id }}/dish">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

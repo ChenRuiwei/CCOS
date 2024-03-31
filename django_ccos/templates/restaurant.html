@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Canteen Page
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 mb-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for restaurant in restaurant_list %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
+                        </div>
+                        <div class="card-img-container d-flex justify-content-center align-items-center"
+                             style="height: 60%;"> <!-- 设置所需的高度比例 -->
+                            <img src={% static restaurant.photo_url %}  class="card-img-top"
+                                 alt="Hollywood Sign on The Hill"/>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ restaurant.description }}
+                            </p>
+                        </div>
+                        <a class="btn btn-light" href="/restaurant/{{ restaurant.restaurant_id }}">
+                            进入饭店
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

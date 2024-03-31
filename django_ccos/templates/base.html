@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/background.css' %}">
+    {#    <style>#}
+    {#        .background-image {#}
+    {#            background-image: url("{% static 'images/background/background.jpg' %}");#}
+    {#            background-size: cover; /* 可以根据需要调整背景图片的大小 */#}
+    {#            background-position: center center; /* 可以根据需要调整背景图片的位置 */#}
+    {#        }#}
+    {#    </style>#}
+</head>
+
+<body class="background-image">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style=" background-color: #e3f2fd; ">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="/">
+            校园食堂外送点餐系统
+        </a>
+
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/canteen">食堂</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/business">商家管理</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                </li>
+            </ul>
+            <!-- Left links -->
+
+            <div class="d-flex align-items-center">
+                {% if request.session.is_login %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ request.session.user_name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="/personal">个人中心</a></li>
+                            <li><a class="dropdown-item" href="/orders">我的订单</a></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="/login">
+                        <button type="button" class="btn btn-light px-3 me-2">
+                            登录
+                        </button>
+                    </a>
+                    <a href="/register">
+                        <button type="button" class="btn btn-primary me-3">
+                            成为新用户
+                        </button>
+                    </a>
+                {% endif %}
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </div>
+</nav>
+<!-- Navbar -->
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

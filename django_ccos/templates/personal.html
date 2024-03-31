@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Personal
+{% endblock %}
+
+{% block content %}
+    <div class="bg-white border rounded-5">
+
+        <section style="border-radius: .5rem .5rem 0 0; position: relative; overflow: hidden; min-height: 400px;"
+                 class="p-4 d-flex justify-content-center">
+            <!-- Sidenav-->
+            <nav id="sidenav-1" data-mdb-close-on-esc="false" class="sidenav sidenav-primary ps" data-mdb-hidden="false"
+                 data-mdb-position="absolute" data-mdb-focus-trap="false"
+                 style="width: 240px; height: 100%; position: absolute; transition-duration: 0.3s; transition-property: transform, width, padding, margin; transition-timing-function: linear; transform: translateX(0%);">
+                <ul class="sidenav-menu">
+                    <li class="sidenav-item">
+                        <a class="sidenav-link ripple-surface"> <i
+                                class="far fa-smile fa-fw me-3"></i><span>Link 1</span></a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link ripple-surface" data-mdb-toggle="collapse" href="#sidenav-collapse-2-0-0"
+                           role="button"><i class="fas fa-grin fa-fw me-3"></i><span>Category 1</span><i
+                                class="fas fa-angle-down rotate-icon" style="transform: rotate(180deg);"></i></a>
+                        <ul class="sidenav-collapse show collapse" id="sidenav-collapse-2-0-0">
+                            <li class="sidenav-item">
+                                <a class="sidenav-link ripple-surface">Link 2</a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a class="sidenav-link ripple-surface">Link 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidenav-item">
+                        <a class="sidenav-link ripple-surface" data-mdb-toggle="collapse" href="#sidenav-collapse-2-0-1"
+                           role="button"><i class="fas fa-grin-wink fa-fw me-3"></i><span>Category 2</span><i
+                                class="fas fa-angle-down rotate-icon"></i></a>
+                        <ul class="sidenav-collapse collapse" id="sidenav-collapse-2-0-1">
+                            <li class="sidenav-item">
+                                <a class="sidenav-link ripple-surface">Link 4</a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a class="sidenav-link ripple-surface">Link 5</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                </div>
+                <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                </div>
+            </nav>
+
+            <!-- Sidenav-->
+            <div style="padding: 20px;" class="text-center">
+                <button data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1" class="btn btn-primary"
+                        aria-controls="#sidenav-1" aria-haspopup="true" aria-expanded="true" style="">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="d-flex justify-content-center my-5"></div>
+            </div>
+            <div class="sidenav-backdrop"
+                 style="transition: opacity 0.3s ease-out 0s; position: absolute; width: 100%; height: 100%; opacity: 1;"></div>
+        </section>
+
+
+        <div class="p-4 text-center border-top mobile-hidden">
+            <a class="btn btn-link px-3" data-mdb-toggle="modal" role="button" aria-expanded="false"
+               aria-controls="example1" data-ripple-color="hsl(0, 0%, 67%)" data-mdb-target="#apiRestrictedModal"
+               type="button" style="">
+                <i class="fas fa-code me-md-2"></i>
+                <span class="d-none d-md-inline-block">
+          Show code
+        </span>
+            </a>
+
+
+            <a class="btn btn-link px-3 " data-ripple-color="hsl(0, 0%, 67%)">
+                <i class="fas fa-file-code me-md-2 pe-none"></i>
+                <span class="d-none d-md-inline-block export-to-snippet pe-none">
+            Edit in sandbox
+          </span>
+            </a>
+
+        </div>
+
+
+    </div>
+{% endblock %}

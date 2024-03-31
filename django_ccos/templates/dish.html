@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Canteen Page
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 mb-5">
+        {% if not dish_list %}
+            <p>暂无菜品</p>
+        {% else %}
+            {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+            <form method="post" action="/order">
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    {% csrf_token %}
+                    {% for dish in dish_list %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h5 class="card-title">{{ dish.dish_name }}</h5>
+                                </div>
+                                <div class="card-img-container d-flex justify-content-center align-items-center"
+                                     style="height: 60%;"> <!-- 设置所需的高度比例 -->
+                                    <img src={% static dish.photo_url %}  class="card-img-top"
+                                         alt="Hollywood Sign on The Hill"/>
+                                </div>
+
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{ dish.description }}
+                                    </p>
+                                    <strong>{{ dish.price }} 元</strong>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">已选</span>
+                                    <input type="number" class="form-control" min="0" value="0"
+                                           name={{ dish.dish_id }}>
+                                    <span class="input-group-text">件</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {#                <button type="submit" style="position:fixed;bottom:30px;right:30px;"#}
+                {#                        class="btn btn-primary btn-lg">下单#}
+                {#                </button>#}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        style="position:fixed;bottom:30px;right:30px;">
+                    我已选好菜品
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">填写详细信息</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">选择地址</label>
+                                    <select class="form-select" aria-label="Default select example" name="address_id">
+                                        {% for address in address_list %}
+                                            <option value={{ address.address_id }}>{{ address.location }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">选择联系方式</label>
+                                    <select class="form-select" aria-label="Default select example" name="contact_id">
+                                        {% for contact in contact_list %}
+                                            <option value={{ contact.contact_id }}>{{ contact.contact_name }} {{ contact.phone_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">订单备注</label>
+                                    <textarea class="form-control" id="message-text" name="order_notes"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">我再想想
+                                </button>
+                                <button type="submit" class="btn btn-primary">确认下单</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'business/base.html' %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    商家登录
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% if message %}
+                            <div class="alert alert-warning">{{ message }}</div>
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ login_form.user_id.label_tag }}
+                            {{ login_form.user_id }}
+                        </div>
+                        <div class="mb-3">
+                            {{ login_form.password.label_tag }}
+                            {{ login_form.password }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
